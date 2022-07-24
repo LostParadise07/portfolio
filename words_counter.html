@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            font-family: sans-serif;
+        }
+        
+        body {
+            background: rgb(30, 70, 97);
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        h1 {
+            color: white;
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+        
+        textarea {
+            width: 750px;
+            border: none;
+            resize: none;
+            outline: none;
+            font-size: 18px;
+            color: #1d2630;
+            padding: 50px 30px 50px 30px;
+            border-radius: 8px;
+        }
+        
+        .count {
+            background: rgb(6, 147, 241);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 815px;
+            border-radius: 8px;
+        }
+        
+        .box {
+            padding: 10px 20px;
+            margin: 0px 45px;
+            text-align: center;
+        }
+        
+        p {
+            color: #ccc;
+        }
+        
+        h5 {
+            color: white;
+            font-size: 32px;
+        }
+    </style>
+    <title>Words Counter</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>
+            The Word Counter</h1>
+        <p class="subtitle">
+            Count Live Characters, words, sentences, paragraphs
+        </p>
+        <textarea name="" id="TextArea" rows="15"></textarea>
+        <div class="count">
+            <div class="box">
+                <h5 id="characters">0</h5>
+                <p>Characters</p>
+            </div>
+            <div class="box">
+                <h5 id="words">0</h5>
+                <p>Words</p>
+
+            </div>
+            <div class="box">
+                <h5 id="sentences">0</h5>
+                <p>sentences</p>
+            </div>
+            <div class="box">
+                <h5 id="paragraphs">0</h5>
+                <p>paragraphs</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let TextArea = document.getElementById("TextArea");
+        let characters = document.getElementById("characters");
+        let words = document.getElementById("words");
+        let sentences = document.getElementById("sentences");
+        let paragraphs = document.getElementById("paragraphs");
+
+        TextArea.addEventListener("input", () => {
+            characters.textContent = TextArea.value.length;
+            let text = TextArea.value.trim();
+
+            words.textContent = text.split(/\s+/).filter((item) => item).length;
+            sentences.textContent = text.split(/[.|!|?]+/g).length - 1;
+            paragraphs.textContent = text.replace(/\n$/gm, '').split(/\n/).length;
+        })
+    </script>
+
+
+</body>
+
+</html>
